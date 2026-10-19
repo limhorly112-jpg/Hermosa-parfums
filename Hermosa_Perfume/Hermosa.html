@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efeaf8">
+  <title>HERMOSA Parfums</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --rose: #7b5cb8;
+      --rose-dark: #5a3f93;
+      --ink: #25212f;
+      --cream: #ece7f6;
+      --line: #d6d3e0;
+      --silver: #a9aec0;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      background-attachment: fixed;
+      font-family: Georgia, 'Times New Roman', serif
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: rgba(250, 246, 246, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .navbar {
+      padding: .8rem 0
+    }
+
+    .navbar-brand {
+      line-height: .8;
+      letter-spacing: .16em
+    }
+
+    .navbar-brand h2 {
+      font-size: 1.55rem;
+      margin: 0;
+      font-weight: 600
+    }
+
+    .navbar-brand small {
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .38em
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--ink);
+      font: 500 .9rem Arial, sans-serif;
+      padding: .65rem .8rem !important;
+      transition: color .2s
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+      color: var(--rose)
+    }
+
+    .search-form {
+      min-width: 245px
+    }
+
+    .form-control {
+      border-color: #d8c5ca
+    }
+
+    .form-control:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 .2rem #b8758326
+    }
+
+    .btn-rose {
+      background: var(--rose);
+      border: 1px solid var(--rose);
+      color: white
+    }
+
+    .btn-rose:hover,
+    .btn-rose:focus {
+      background: var(--rose-dark);
+      border-color: var(--rose-dark);
+      color: white
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #f4e8eb, #f8f3ef);
+      padding-bottom: 2.8rem
+    }
+
+    .carousel-item img {
+      height: clamp(230px, 42vw, 480px);
+      width: 100%;
+      object-fit: cover;
+      object-position: center
+    }
+
+    .carousel-caption {
+      bottom: 12%;
+      text-shadow: 0 2px 15px #0008
+    }
+
+    .carousel-caption h2 {
+      font-size: clamp(1.5rem, 4vw, 3.4rem);
+      font-style: italic
+    }
+
+    .carousel-caption p {
+      font: .9rem Arial, sans-serif;
+      letter-spacing: .12em
+    }
+
+    .section-heading {
+      text-align: center;
+      padding: 2.6rem 1rem 1.3rem
+    }
+
+    .eyebrow {
+      font: .72rem Arial, sans-serif;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--rose-dark)
+    }
+
+    .section-heading h1,
+    .section-heading h2 {
+      font-style: italic;
+      font-weight: 400;
+      margin: .4rem 0
+    }
+
+    .section-heading p {
+      color: #74666a;
+      max-width: 580px;
+      margin: .5rem auto 0
+    }
+
+    .collection {
+      padding-bottom: 1.8rem
+    }
+
+    .collection-title {
+      font-size: 1.5rem;
+      text-align: center;
+      font-style:italic;
+      margin: 1.4rem 0 1.5rem
+    }
+
+    .product-grid {
+      row-gap: 1.25rem
+    }
+
+    .product-card {
+      height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform .25s, box-shadow .25s
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px #43212b12
+    }
+
+    .product-card img {
+      height: 230px;
+      width: 100%;
+      object-fit: contain;
+      background: linear-gradient(135deg, #fff, #f7f0f1);
+      padding: 1rem
+    }
+
+    .product-card .card-body {
+      display: flex;
+      flex-direction: column;
+      padding: 1.1rem
+    }
+
+    .product-card .card-title {
+      font-size: 1.08rem;
+      line-height: 1.35
+    }
+
+    .product-card .card-text {
+      font: .88rem/1.6 Arial, sans-serif;
+      color: #75686b;
+      flex: 1
+    }
+
+    .product-card .btn {
+      align-self: flex-start;
+      font: .85rem Arial, sans-serif;
+      padding: .55rem 1rem;
+      border-radius: 30px
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: #6f6064
+    }
+
+    .about-band {
+      margin: 2rem 0 0;
+      background: #f0e4e7;
+      padding: 3rem 1rem;
+      text-align: center
+    }
+
+    .about-band p {
+      max-width: 650px;
+      margin: .75rem auto;
+      color: #66575b;
+      line-height: 1.8
+    }
+
+    footer {
+      background: #2d2528;
+      color: #f9eeee;
+      padding: 2.3rem 1rem;
+      text-align: center
+    }
+
+    footer .footer-brand {
+      letter-spacing: .22em;
+      font-size: 1.35rem
+    }
+
+    footer p {
+      font: .85rem/1.7 Arial, sans-serif;
+      color: #d9c9cd;
+      margin: .5rem auto;
+      max-width: 650px
+    }
+
+    footer a {
+      color: #f1cbd3;
+      text-decoration: none
+    }
+
+    footer a:hover {
+      text-decoration: underline
+    }
+
+    .social-links { text-align: center; margin: 1rem 0 }
+    .social-links a { color: #efeaf8; font-size: 1.8rem; margin: 0 .6rem }
+    .social-links a:hover { color: #cdbdf0 }
+
+    .modal-content {
+      border: 0;
+      border-radius: 14px;
+      overflow: hidden
+    }
+
+    .modal-header {
+      background: #f6eaed;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .modal-product-image {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      background: #fbf7f5;
+      padding: 1.2rem
+    }
+
+    .modal-body p {
+      font: .95rem/1.7 Arial, sans-serif;
+      color: #6b5e62
+    }
+
+    .product-buy-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .65rem;
+      flex-wrap: wrap;
+      margin-top: .6rem
+    }
+
+    .product-price {
+      font: 600 1rem Arial, sans-serif;
+      color: var(--rose-dark);
+      white-space: nowrap
+    }
+
+    .add-to-cart {
+      align-self: auto !important
+    }
+
+    .cart-trigger {
+      position: relative;
+      white-space: nowrap
+    }
+
+    .cart-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.4rem;
+      height: 1.4rem;
+      padding: 0 .25rem;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--rose-dark);
+      font: 700 .75rem Arial, sans-serif;
+      margin-left: .25rem
+    }
+
+    .cart-list {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem
+    }
+
+    .cart-line {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      gap: .75rem;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: .85rem
+    }
+
+    .cart-line img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      background: #fbf7f5;
+      border-radius: 8px
+    }
+
+    .cart-line-title {
+      font: 600 .92rem/1.35 Arial, sans-serif
+    }
+
+    .cart-line-price {
+      font: .85rem Arial, sans-serif;
+      color: var(--rose-dark);
+      margin-top: .25rem
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .45rem
+    }
+
+    .quantity-control button {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      line-height: 1
+    }
+
+    .cart-remove {
+      border: 0;
+      background: transparent;
+      color: #9a5262;
+      text-decoration: underline;
+      font: .78rem Arial, sans-serif;
+      padding: .2rem
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: #75686b;
+      padding: 1.5rem .5rem;
+      font: .95rem Arial, sans-serif
+    }
+
+    .cart-summary {
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      margin-top: 1rem
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font: 600 1.1rem Arial, sans-serif
+    }
+
+    .checkout-form label {
+      font: .85rem Arial, sans-serif;
+      margin-bottom: .3rem
+    }
+
+    .checkout-form .form-control {
+      font: .95rem Arial, sans-serif
+    }
+
+    .checkout-note {
+      font: .8rem/1.5 Arial, sans-serif;
+      color: #75686b
+    }
+
+    @media(max-width:575.98px) {
+      .cart-line {
+        grid-template-columns: 52px minmax(0, 1fr) auto;
+        gap: .5rem
+      }
+
+      .cart-line img {
+        width: 52px;
+        height: 52px
+      }
+
+      .product-buy-row {
+        align-items: flex-start
+      }
+
+      .add-to-cart {
+        font-size: .8rem !important;
+        padding: .5rem .7rem !important
+      }
+    }
+
+
+    .simple-cart {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem 1.4rem 1.5rem;
+    }
+
+    .simple-cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .simple-cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .8rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .simple-cart-item img {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      background: #fbf7f5;
+      border-radius: 8px;
+    }
+
+    .simple-cart-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .simple-cart-info h4 {
+      font-size: 1rem;
+      margin: 0 0 .3rem;
+    }
+
+    .simple-cart-info p {
+      font: .85rem Arial, sans-serif;
+      color: var(--rose-dark);
+      margin: 0 0 .4rem;
+    }
+
+    .simple-quantity {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      flex-wrap: wrap;
+      font: .85rem Arial, sans-serif;
+    }
+
+    .simple-quantity button {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 5px;
+      padding: .15rem .55rem;
+    }
+
+    .simple-quantity .remove-item {
+      color: #9a5262;
+      text-decoration: underline;
+      border: 0;
+    }
+
+    .simple-cart-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1rem;
+    }
+
+    .simple-cart-bottom h3 {
+      font: 600 1.2rem Arial, sans-serif;
+      margin: 0;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: #75686b;
+      padding: 1.2rem;
+      font: .95rem Arial, sans-serif;
+    }
+
+    .checkout-note {
+      font: .8rem/1.5 Arial, sans-serif;
+      color: #75686b;
+    }
+
+    @media(max-width:575.98px) {
+      .simple-cart {
+        padding: 1rem
+      }
+
+      .simple-cart-item {
+        gap: .6rem;
+        align-items: flex-start
+      }
+
+      .simple-cart-item img {
+        width: 55px;
+        height: 55px
+      }
+
+      .simple-cart-item>strong {
+        font-size: .9rem
+      }
+
+      .simple-cart-info h4 {
+        font-size: .9rem
+      }
+    }
+
+    .back-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--rose);
+      color: white;
+      box-shadow: 0 4px 14px #0002;
+      display: none
+    }
+
+    .back-top.show {
+      display: block
+    }
+
+    @media(max-width:991.98px) {
+      .navbar-collapse {
+        padding: .8rem 0
+      }
+
+      .search-form {
+        min-width: 0;
+        margin-top: .5rem
+      }
+
+      .navbar-nav {
+        gap: .1rem
+      }
+
+      .navbar-toggler {
+        border-color: #c7a8b0
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 .2rem #b8758333
+      }
+    }
+
+    @media(max-width:575.98px) {
+      .navbar-brand h2 {
+        font-size: 1.3rem
+      }
+
+      .hero {
+        padding-bottom: 1.8rem
+      }
+
+      .carousel-caption {
+        bottom: 7%;
+        left: 10%;
+        right: 10%
+      }
+
+      .carousel-caption p {
+        font-size: .7rem
+      }
+
+      .section-heading {
+        padding-top: 2rem
+      }
+
+      .product-card img {
+        height: 215px
+      }
+
+      .collection-title {
+        font-size: 1.35rem
+      }
+
+      .about-band {
+        padding: 2.2rem 1rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important
+      }
+    }
+
+    /* ===== PREMIUM LAVENDER & SILVER THEME ===== */
+    body {
+      background: linear-gradient(160deg, #efeaf8 0%, #e4e6ee 45%, #dcd6ec 100%) fixed;
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(248, 246, 252, .93), rgba(236, 233, 244, .9));
+      border-bottom: 1px solid transparent;
+      border-image: linear-gradient(90deg, transparent, #b9bccb, #b79fe0, #b9bccb, transparent) 1;
+      box-shadow: 0 6px 24px rgba(90, 63, 147, .08)
+    }
+
+    .navbar-brand h2 {
+      background: linear-gradient(90deg, #3b2a63, #7b5cb8 55%, #8a8fa0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    .navbar-toggler { border-color: #b9a9d8 }
+    .navbar-toggler:focus { box-shadow: 0 0 0 .2rem #7b5cb833 }
+
+    .dropdown-menu {
+      background: #faf9fd;
+      border: 1px solid #d9d6e6;
+      box-shadow: 0 14px 34px rgba(60, 45, 100, .14)
+    }
+
+    .dropdown-item:hover { background: #ece7f6; color: #5a3f93 }
+
+    .form-control { border-color: #c9c5d8; background: rgba(255, 255, 255, .85) }
+    .form-control:focus { border-color: var(--rose); box-shadow: 0 0 0 .2rem #7b5cb826 }
+
+    .btn-rose {
+      background: linear-gradient(135deg, #8d6fcb, #5f43a0);
+      border-color: #5f43a0;
+      box-shadow: 0 4px 14px rgba(95, 67, 160, .25);
+      letter-spacing: .03em
+    }
+
+    .btn-rose:hover, .btn-rose:focus {
+      background: linear-gradient(135deg, #9b80d6, #6c4fb0);
+      border-color: #6c4fb0;
+      transform: translateY(-1px)
+    }
+
+    .btn-outline-secondary { color: #5b5870; border-color: #a9aec0 }
+    .btn-outline-secondary:hover { background: #a9aec0; border-color: #a9aec0; color: #fff }
+
+    .hero { background: linear-gradient(135deg, #e2d9f3, #e8eaf0 55%, #d9dbe6) }
+
+    .section-heading h1, .section-heading h2 { color: #2e2342 }
+    .section-heading p { color: #6b6880 }
+    .collection-title { color: #3a2d58 }
+
+    .section-heading h1::after, .section-heading h2::after, .collection-title::after {
+      content: "";
+      display: block;
+      width: 90px;
+      height: 2px;
+      margin: .9rem auto 0;
+      background: linear-gradient(90deg, transparent, #a9aec0, #9b7fd6, #a9aec0, transparent)
+    }
+
+    .product-card {
+      background: linear-gradient(180deg, #fff, #f6f4fb);
+      border: 1px solid #d9d6e6;
+      box-shadow: 0 2px 10px rgba(60, 45, 100, .05)
+    }
+
+    .product-card:hover { box-shadow: 0 18px 40px rgba(95, 67, 160, .18); border-color: #b9a5e2 }
+    .product-card img { background: linear-gradient(135deg, #fff, #ecebf3) }
+    .product-card .card-text { color: #6c6a7d }
+    .product-price { color: #5a3f93 }
+
+    .about-band { background: linear-gradient(135deg, #d8cdee, #dfe1ea 50%, #cfd2dd) }
+    .about-band p { color: #55526a }
+
+    .simple-cart {
+      background: linear-gradient(180deg, #fff, #f7f5fb);
+      border-color: #d9d6e6;
+      box-shadow: 0 10px 30px rgba(60, 45, 100, .08)
+    }
+
+    .simple-cart-item img, .cart-line img, .modal-product-image { background: #f1eff7 }
+    .simple-quantity .remove-item, .cart-remove { color: #7b5cb8 }
+    .cart-empty, .checkout-note { color: #6c6a7d }
+    .modal-header { background: #ece7f6 }
+
+    footer {
+      background: linear-gradient(160deg, #2a2438, #34303f 60%, #3d3b4a);
+      color: #efeaf8;
+      border-top: 3px solid transparent;
+      border-image: linear-gradient(90deg, #a9aec0, #9b7fd6, #a9aec0) 1
+    }
+
+    footer p { color: #c9c5d8 }
+    footer a { color: #cdbdf0 }
+
+    .order-result {
+      background: linear-gradient(180deg, #fff, #f6f4fb);
+      border: 1px solid #d9d6e6;
+      border-left: 4px solid #7b5cb8;
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem
+    }
+
+    .order-result h3 { font-size: 1.3rem; font-style: italic; color: #2e2342; margin: 0 0 .8rem }
+    .order-result ul { list-style: none; padding: 0; margin: 0 }
+
+    .order-result li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid #d6d3e0;
+      font: .95rem Arial, sans-serif
+    }
+
+    .order-total { font: 600 1.1rem Arial, sans-serif; color: #5a3f93; text-align: right; margin: .8rem 0 0 }
+    .order-note { font: .8rem Arial, sans-serif; color: #6c6a7d; margin: .4rem 0 0 }
+  </style>
+</head>
+
+<body id="home">
+  <header>
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand text-dark" href="#home" aria-label="Hermosa Parfums home">
+          <h2>HERMOSA</h2><small>PARFUMS</small>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+          aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cosmic">Best Sellers</a></li>
+            <!--<li class="nav-item"><a class="nav-link" href="#notes">Notes</a></li> -->
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#collections" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">Collection</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#cosmic">COSMIC KYLIE JENNER</a></li>
+                <li><a class="dropdown-item" href="#jo-malone">JO MALONE</a></li>
+                <li><a class="dropdown-item" href="#burberry">BURBERRY HER</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#collections">The Signature Collection</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+          <form class="d-flex search-form" id="searchForm" role="search">
+            <input class="form-control me-2" id="productSearch" type="search" placeholder="Search perfumes"
+              aria-label="Search perfumes">
+            <button class="btn btn-rose" type="submit">Search</button>
+          </form>
+          <a class="btn btn-rose cart-trigger ms-lg-2 mt-2 mt-lg-0" href="#shopping-cart"
+            aria-label="Go to shopping cart">Cart <span class="cart-count" id="cartCount">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Featured collections">
+      <div id="PerfumeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#PerfumeCarousel" data-bs-slide-to="0"
+            class="active" aria-current="true" aria-label="Slide 1"></button><button type="button"
+            data-bs-target="#PerfumeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button><button type="button"
+            data-bs-target="#PerfumeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button></div>
+        <div class="carousel-inner">
+          <div class="carousel-item active"><img src="model_for_comic.webp" alt="Cosmic perfume collection"
+              fetchpriority="high">
+            <div class="carousel-caption">
+              <h2>Find Your Signature Scent</h2>
+              <p>DISCOVER COSMIC KYLIE JENNER COLLECTION</p><a href="#collections" class="btn btn-rose">Explore Collection</a>
+            </div>
+          </div>
+          <div class="carousel-item"><img src="model_for_jomalone.webp" alt="Jo Malone fragrance collection"
+              loading="lazy">
+            <div class="carousel-caption">
+              <h2>Quiet Luxury, Beautifully Bottled</h2>
+              <p>DISCOVER JO MALONE LONDON</p><a href="#jo-malone" class="btn btn-rose">Shop the Collection</a>
+            </div>
+          </div>
+          <div class="carousel-item"><img src="burberryher_model.jpg" alt="Burberry Her fragrance collection"
+              loading="lazy">
+            <div class="carousel-caption">
+              <h2>A Scent to Remember</h2>
+              <p>DISCOVER THE BURBERRY COLLECTION</p><a href="#burberry" class="btn btn-rose">Discover More</a>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#PerfumeCarousel" data-bs-slide="prev"
+          aria-label="Previous slide"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#PerfumeCarousel" data-bs-slide="next"
+          aria-label="Next slide"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>
+      </div>
+      <div class="section-heading" id="collections">
+      
+        <h1>The Signature Collection</h1>
+        <p>Discover fragrances that capture a mood, a memory, and a little bit of magic.</p>
+      </div>
+    </section>
+
+    <section class="collection container" id="cosmic">
+      <h2 class="collection-title">COSMIC KYLIE JENNER</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 product-grid">
+        <div class="col product-item">
+          <article class="card product-card" data-name="Cosmic Kylie Jenner Eau de Parfum" data-notes="Ambery floral"
+            data-description="A radiant ambery floral fragrance made for everyday confidence and memorable moments."
+            data-price="65"><img src="cosmic.00001.png" class="card-img-top" alt="Cosmic Kylie Jenner Eau de Parfum"
+              loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Cosmic Kylie Jenner Eau de Parfum</h3>
+              <p class="card-text">Ambery floral</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Cosmic Kylie Jenner Intense Eau de Parfum"
+            data-notes="Ambery gourmand"
+            data-description="A deeper, richer take on Cosmic, with a warm ambery gourmand character." data-price="85">
+            <img src="cosmic.003.png" class="card-img-top" alt="Cosmic Kylie Jenner Intense Eau de Parfum"
+              loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Cosmic Kylie Jenner Intense Eau de Parfum</h3>
+              <p class="card-text">Ambery gourmand</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Cosmic Kylie Jenner 2.0 Eau de Parfum" data-notes="Floral amber"
+            data-description="A modern floral amber scent with a soft, luminous and confident feel." data-price="60">
+            <img src="cosmic.002.png" class="card-img-top" alt="Cosmic Kylie Jenner 2.0 Eau de Parfum" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Cosmic Kylie Jenner 2.0 Eau de Parfum</h3>
+              <p class="card-text">Floral amber</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection container" id="jo-malone">
+      <h2 class="collection-title">Jo Malone London</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 product-grid">
+        <div class="col product-item">
+          <article class="card product-card" data-name="Wood Sage & Sea Salt Cologne"
+            data-notes="Aromatic, fresh and woody"
+            data-description="Wood Sage & Sea Salt by Jo Malone London is an aromatic fragrance for women and men."
+            data-price="170"><img src="jo-malone-wood-sage-and-sea-salt.webp" class="card-img-top"
+              alt="Wood Sage and Sea Salt Cologne" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Wood Sage &amp; Sea Salt Cologne</h3>
+              <p class="card-text">An aromatic fragrance for women and men.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="English Pear & Freesia" data-notes="Chypre fruity"
+            data-description="English Pear & Freesia by Jo Malone London is a fresh, fruity fragrance for women."
+            data-price="175"><img src="jo-malone-english-pear-1.jpg" class="card-img-top" alt="English Pear and Freesia"
+              loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">English Pear &amp; Freesia</h3>
+              <p class="card-text">A fresh, fruity fragrance for women.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Peony & Blush Suede" data-notes="Floral"
+            data-description="Peony & Blush Suede by Jo Malone London is a graceful floral fragrance for women."
+            data-price="170"><img src="jo_malone_03.webp" class="card-img-top" alt="Peony and Blush Suede"
+              loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Peony &amp; Blush Suede</h3>
+              <p class="card-text">A graceful floral fragrance for women.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Pomegranate Noir" data-notes="Aromatic fruity"
+            data-description="Pomegranate Noir by Jo Malone London is an aromatic fruity fragrance for women and men."
+            data-price="180"><img src="jo_malone_04.webp" class="card-img-top" alt="Pomegranate Noir" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Pomegranate Noir</h3>
+              <p class="card-text">An aromatic fruity fragrance for women and men.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection container" id="burberry">
+      <h2 class="collection-title">Burberry Her</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 product-grid">
+        <div class="col product-item">
+          <article class="card product-card" data-name="Burberry Her Elixir de Parfum"
+            data-notes="Fruity, creamy and warm"
+            data-description="Burberry Her Elixir de Parfum is a warm, expressive fragrance for women."
+            data-price="185"><img src="burberry_01.jpg" class="card-img-top" alt="Burberry Her Elixir de Parfum"
+              loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Burberry Her Elixir de Parfum</h3>
+              <p class="card-text">A warm fragrance for women.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Burberry Her Petals" data-notes="Floral"
+            data-description="A soft, feminine floral scent inspired by the Burberry Her collection." data-price="180">
+            <img src="burberry_02.webp" class="card-img-top" alt="Burberry Her Petals" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Burberry Her Petals</h3>
+              <p class="card-text">A soft, feminine floral scent.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Burberry Her Eau de Parfum" data-notes="Berries, amber and musk"
+            data-description="Burberry Her Eau de Parfum blends berry notes with amber and musk." data-price="181"><img
+              src="burberry_03.webp" class="card-img-top" alt="Burberry Her Eau de Parfum" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Burberry Her Eau de Parfum</h3>
+              <p class="card-text">With berries, amber and musk.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+        <div class="col product-item">
+          <article class="card product-card" data-name="Burberry Her Eau de Toilette" data-notes="Floral fruity"
+            data-description="Burberry Her Eau de Toilette is a floral fruity fragrance for women." data-price="185"><img
+              src="burberry_04.webp" class="card-img-top" alt="Burberry Her Eau de Toilette" loading="lazy">
+            <div class="card-body">
+              <h3 class="card-title">Burberry Her Eau de Toilette</h3>
+              <p class="card-text">A floral fruity fragrance for women.</p>
+              <div class="product-buy-row"><span class="product-price">$<span class="price-value"></span></span><button
+                  class="btn btn-rose add-to-cart" type="button">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section class="container simple-cart my-5" id="shopping-cart">
+      <div class="section-heading">
+        <div class="eyebrow">place your order</div>
+        <h2>Shopping Cart</h2>
+        
+      </div>
+      <div id="cartItems" class="simple-cart-items">
+        <p class="cart-empty">Your cart is empty.Add a perfume to get ordered</p>
+      </div>
+      <div class="simple-cart-bottom">
+        <h3>Total: $<span id="cartTotal">0.00</span></h3>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-outline-secondary" id="clearCart">Clear Cart</button>
+          <button type="button" class="btn btn-rose" id="placeOrder">Place Order</button>
+        </div>
+      </div>
+      
+      <div id="orderMessage" class="mt-3" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="about-band" id="about">
+      <div class="eyebrow">A little about us</div>
+      <h2 class="mt-2 fst-italic">Your fragrance, your story.</h2>
+      <p>At HERMOSA PARFUMS, we bring together distinctive fragrances to help you find a scent that feels personal.
+        Explore the collection and discover your next signature perfume.</p> 
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-brand">HERMOSA</div>
+    <p>PARFUMS · A fragrance collection</p>
+    <p>FIND YOUR SIGNATURE SCENT FRAGRANCE THAT FEELS LIKE YOU</p>
+    <div class="social-links">
+  <a href="https://www.facebook.com/yourpage" target="_blank"><i class="bi bi-facebook"></i></a>
+  <a href="https://www.instagram.com/yourpage" target="_blank"><i class="bi bi-instagram"></i></a>
+  <a href="https://www.tiktok.com/@yourpage" target="_blank"><i class="bi bi-tiktok"></i></a>
+  <a href="https://x.com/yourpage" target="_blank"><i class="bi bi-twitter-x"></i></a>
+  </div>
+  </footer>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('productSearch');
+    const productItems = [...document.querySelectorAll('.product-item')];
+    const emptyState = document.getElementById('emptyState');
+
+    function filterProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+      productItems.forEach(item => {
+        const card = item.querySelector('.product-card');
+        const searchableText = `${card.dataset.name} ${card.dataset.notes} ${card.dataset.description}`.toLowerCase();
+        const matches = searchableText.includes(query);
+        item.hidden = !matches;
+        if (matches) visibleCount++;
+      });
+      document.querySelectorAll('.collection').forEach(section => {
+        const hasVisible = [...section.querySelectorAll('.product-item')].some(item => !item.hidden);
+        section.hidden = !hasVisible;
+      });
+      emptyState.style.display = visibleCount ? 'none' : 'block';
+    }
+    searchForm.addEventListener('submit', event => { event.preventDefault(); filterProducts(); document.getElementById('collections').scrollIntoView({ behavior: 'smooth' }); });
+    searchInput.addEventListener('input', filterProducts);
+    
+    let cart = [];
+
+    const cartItems = document.getElementById('cartItems');
+
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const orderMessage = document.getElementById('orderMessage');
+
+    
+    document.querySelectorAll('.product-card').forEach(function (card) {
+      const price = card.getAttribute('data-price');
+      card.querySelector('.price-value').textContent = Number(price).toFixed(2);
+    });
+
+    
+    document.querySelectorAll('.add-to-cart').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const card = button.closest('.product-card');
+        const name = card.getAttribute('data-name');
+        const price = Number(card.getAttribute('data-price'));
+        const image = card.querySelector('img').getAttribute('src');
+
+       
+        let found = false;
+        for (let i = 0; i < cart.length; i++) {
+          if (cart[i].name === name) {
+            cart[i].quantity++;
+            found = true;
+          }
+        }
+
+       
+        if (found === false) {
+          cart.push({ name: name, price: price, image: image, quantity: 1 });
+        }
+
+        orderMessage.textContent = '';
+        showCart();
+       
+        setTimeout(function () { button.textContent = 'Add to Cart'; }, 900);
+      });
+    });
+
+    
+    function showCart() {
+      cartItems.innerHTML = '';
+      let total = 0;
+      let itemCount = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="cart-empty"> Add a perfume to get started.</p>';
+      }
+
+      for (let i = 0; i < cart.length; i++) {
+        const item = cart[i];
+        const lineTotal = item.price * item.quantity;
+        total = total + lineTotal;
+        itemCount = itemCount + item.quantity;
+
+        cartItems.innerHTML += `
+          <div class="simple-cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="simple-cart-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} each</p>
+              <div class="simple-quantity">
+                <button type="button" onclick="changeQuantity(${i}, -1)" aria-label="Decrease quantity">−</button>
+                <span>Quantity: ${item.quantity}</span>
+                <button type="button" onclick="changeQuantity(${i}, 1)" aria-label="Increase quantity">+</button>
+                
+              </div>
+            </div>
+            <strong>$${lineTotal.toFixed(2)}</strong>
+          </div>`;
+      }
+
+      cartCount.textContent = itemCount;
+      cartTotal.textContent = total.toFixed(2);
+    }
+
+    
+    function changeQuantity(index, amount) {
+      cart[index].quantity = cart[index].quantity + amount;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      showCart();
+    }
+
+   
+    document.getElementById('clearCart').addEventListener('click', function () {
+      cart = [];
+      orderMessage.textContent = '';
+      showCart();
+    });
+
+    document.getElementById('placeOrder').addEventListener('click', function () {
+      if (cart.length === 0) {
+        orderMessage.textContent = 'Please add a perfume to your cart first.';
+        orderMessage.className = 'mt-3 text-danger';
+        return;
+      }
+
+     
+      let receipt = '<div class="order-result"><h3>Thank you for your order our Perfume</h3><ul>';
+      for (let i = 0; i < cart.length; i++) {
+        receipt += '<li><span>' + cart[i].name + ' x ' + cart[i].quantity + '</span>' +
+          '<strong>$' + (cart[i].price * cart[i].quantity).toFixed(2) + '</strong></li>';
+      }
+      receipt += '</ul><p class="order-total">Total: $' + cartTotal.textContent + '</p>' ;
+
+      orderMessage.innerHTML = receipt;
+      orderMessage.className = 'mt-3';
+
+      cart = [];
+      showCart();
+      orderMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+   
+    showCart();
+
+   
+    document.querySelectorAll('#menu a.nav-link, #menu .dropdown-item').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.getElementById('menu');
+        if (menu.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(menu).hide();
+      });
+    });
+    
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 450), { passive: true });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+
+</html>
